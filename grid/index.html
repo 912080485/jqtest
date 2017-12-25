@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<body>
+		<img src="img/22fd0c58252dd42aae5e576d0a3b5bb5cbeab8fe.jpg" class=""/>
+		<script src="http://cdn.bootcss.com/jquery/1.11.0/jquery.min.js" type="text/javascript"></script>
+		<script src="js/gridImageAnimation.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function(){
+				var grid = $('img').gridImageAnimation({ 'mode' : 'fadeIn', 
+                                      'cell' : 15 , 
+                                      'speed' : 95, 
+                                      'durationFading' : 200,
+                                      'previewBox' : null,
+                                       complete : null
+                                    });      
+			})
+		</script>
+	</body>
+</html>

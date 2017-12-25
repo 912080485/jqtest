@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content=""  />
+<meta name="description" content="" />
+<title>复古翻牌时钟效果</title>
+<link href="css/fliptimer.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<!-- 代码 开始 -->
+<p style="text-align: center;">距离下班还有：</p>
+<div class="dowebok" style="text-align: center;">
+	<div class="hours"></div>
+	<div class="minutes"></div>
+	<div class="seconds"></div>
+</div>
+
+<script src="js/jquery-1.11.3.min.js"></script>
+<script src="js/jquery.fliptimer.js"></script>
+<script>
+$(function(){
+	var d = new Date();
+	var hour = d.getHours();
+	var out = "";
+	(hour > 12) ? out="18:00:00" : out="12:00:00";
+	var myDate = d.getFullYear() + '/' + (d.getMonth() + 1) + '/' + d.getDate() +'/' + out;
+	
+	$('.dowebok').flipTimer({
+		direction: 'down',
+		date: myDate,
+		callback: function(){
+			alert('下班了！！！');
+		}
+	});
+});
+</script>
+
+<!-- 代码 结束 -->
+
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				padding: 0;
+				margin: 0;
+			}
+			html,body{
+				width: 100%;
+				height: 100%;
+			}
+			body{
+				background-size: cover;
+				background-repeat:no-repeat ;
+			}
+			.container{
+				max-width: 1200px;
+				height: 300px;
+				margin: 0 auto;
+			}
+			.container span{
+				width: 15%;
+				height: 50%;
+				display: inline-block;
+				background-size: 100% 100%;
+				background-repeat:no-repeat ;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container img-list">
+		</div>
+		<script src="js/jquery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function(){
+				var bg_arr = ['img/1.jpg','img/2.jpg','img/3.jpg','img/4.jpg','img/5.jpg','img/6.jpg','img/7.jpg','img/8.jpg']
+				for (var i=0;i<bg_arr.length;i++) {
+					$('.img-list').append("<span></span>")
+				}
+				
+				$('.img-list span').each(function(index){
+					$(this).attr('data-id',index).attr('class','change')
+					var bg = "url('"+bg_arr[index]+"')";
+					$(this).css('background-image',bg)
+					
+				})
+				
+				$('.change').click(function(){
+					$('body').css('background-image',"url('"+bg_arr[$(this).data('id')]+"')")
+					var bg = $('body').attr('style');
+					localStorage.setItem('key',bg)
+					
+				})
+				var bg2 =localStorage.getItem('key')
+				$('body').attr('style',bg2)
+			})
+		</script>
+	</body>
+</html>
+ 

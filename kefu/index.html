@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>基于客服插件</title>
+<link href="css/style.css" rel="stylesheet" media="screen" type="text/css" />
+<script src="js/jquery.min.js"></script>
+</head>
+<body>
+
+<div class="container"></div>
+
+<!-- 客服部分 -->
+<div style="right:-230px;" class="contactusdiyou">
+	<div class="hoverbtn">
+		<span>联</span><span>系</span><span>我</span><span>们</span>
+		<img class="hoverimg" src="img/hoverbtnbg.gif" height="9" width="13">
+	</div>
+	<div class="conter">
+		<div class="con1"> 
+			<dl class="fn_cle">
+				<dt><img src="img/tel.png" height="31" width="31"></dt>
+				<dd class="f1">咨询热线：</dd>
+				<dd class="f2"><span class="ph_num"><a href="tel:18797790616">187-9779-0616</a></span></dd>
+			</dl>
+		</div> 
+		<div class="blank0"></div>
+		<div class="qqcall"> 
+			<dl class="fn_cle">
+				<dt><img src="img/zxkfqq.png" height="31" width="31"></dt>
+				<dd class="f1 f_s14">在线客服：</dd>
+				<dd class="f2 kefuQQ">
+					<span>客服一</span>
+					<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&amp;uin=88888888&amp;site=qq&amp;menu=yes"></a>
+					<br />
+					<span>客服二</span>
+					<a target="_blank" href="#"></a>
+				</dd>
+			</dl>
+			<div class="blank0"></div>           
+		</div> 
+		<div class="blank0"></div>
+		<div class="weixincall"> 
+			<dl class="fn_cle">
+				<dt><img src="img/weixin.png" height="31" width="31"></dt>
+				<dd class="f1">官方微信站：</dd>
+				<dd class="f3"><img src="img/wechat_code.png" height="73" width="73"></dd>
+			</dl>
+		</div> 
+		<div class="blank0"></div>
+		<div class="dytimer">
+			<span style="font-weight: bold;">公司官网：</span>
+			<span><a href="http://www.jq22.com/">www.jq22.com</a></span>
+		</div>
+	</div>
+</div>
+
+<div class="diyoumask" style="height: 2000px;" ></div>
+
+<script type="text/javascript">
+$(function() {
+	$(".contactusdiyou").hover(function() {
+		$(".hoverimg").attr("src","img/hoverbtnbg1.gif");
+		$('.diyoumask').fadeIn();
+		$('.contactusdiyou').animate({right:'0'},300); 
+	}, function() {
+		$(".hoverimg").attr("src","img/hoverbtnbg.gif");
+		$('.contactusdiyou').animate({right:'-230px'},300,function(){});
+		$('.diyoumask').fadeOut();
+	});
+});
+</script>
+
+</body>
+</html>

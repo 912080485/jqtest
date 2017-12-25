@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body { margin: 0; padding: 0; }
+			#loading {
+			  position: fixed;
+			  left: 1rem;
+			  bottom: 1rem;
+			  color: #fff;
+			  font-family: Helvetica, Arial, sans-serif;
+			  text-transform: uppercase;
+			}
+		</style>
+		
+	</head>
+	<body>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/84/three.min.js"></script>
+		<script src="https://threejs.org/examples/js/controls/OrbitControls.js"></script>
+		<div id="loading">loading video</div>
+		<script type="text/javascript">
+			console.clear()
+			class VideoTexture {
+			  constructor (width = 256, height = 128) {
+			    this.video = document.createElement('video')
+			    this.videoLoaded = false
+			
+			    this.canvas = document.createElement('canvas')
+			    this.ctx = this.canvas.getContext('2d')
+			
+			    this.width = this.canvas.width = width
+			    this.height = this.canvas.height = height
+			
+			    this.canvas.style.transform = 'scale(0.85, 0.85)'
+			    this.canvas.style.transformOrigin = '0 0 0'
+			    this.canvas.style.position = 'fixed'
+			    this.canvas.style.top = this.canvas.style.left = '1rem'
+			    document.body.appendChild(this.canvas)
+			    
+			    this.ctx.fillStyle = '#111'
+			    this.ctx.textAlign = 'center'
+			    this.ctx.font = '30px Helvetica'
+			    this.ctx.fillText('loading video', this.canvas.width / 2, this.canvas.height / 2 + 10)
+			    
+			    this.video.src = 'ninja_1.3gp'
+			    this.video.onloadedmetadata = e => {
+			      this.video.play()
+			      this.video.loop = true
+			      this.videoLoaded = true
+			    
+			      let loadText = document.querySelector('#loading')
+			      loadText.parentNode.removeChild(loadText)
+			
+			    }
+			    this.video.width = this.width
+			    this.video.height = this.height
+			    this.video.crossOrigin = "Anonymous"
+			  }
+			
+			  updateFrame () {
+			    if (this.videoLoaded === true) {
+			      this.ctx.drawImage(this.video, 0, 0, this.width, this.height)
+			    }
+			  }
+			}
+			
+			let w = window.innerWidth
+			let h = window.innerHeight
+			
+			const scene = new THREE.Scene()
+			const camera = new THREE.PerspectiveCamera(60, w / h, 0.1, 1000)
+			const renderer = new THREE.WebGLRenderer()
+			const clock = new THREE.Clock()
+			const controls = new THREE.OrbitControls(camera, renderer.domElement)
+			
+			const cameraTexture = new VideoTexture()
+			cameraTexture.texture = new THREE.Texture(cameraTexture.canvas)
+			
+			let geometry = new THREE.PlaneBufferGeometry(130, 65, 60, 60)
+			let material = new THREE.ShaderMaterial({
+			  uniforms: {
+			    time: { value: 0.0 },
+			    cameraTexture: { value: cameraTexture.texture }
+			  },
+			  vertexShader: `
+			    uniform float time;
+			    uniform sampler2D cameraTexture;
+			
+			    // varying vec2 vUv;
+			    // varying vec3 vPosition;
+			    varying float maskValue;
+			
+			    void main () {
+			      vec3 newPosition = position;
+			      vec4 sampler = texture2D(cameraTexture, uv);
+			      float averaged = (sampler.r + sampler.g + sampler.b) / 3.0;
+			      newPosition.z = ((averaged - 0.5) * 150.0 - newPosition.z) * 0.8;
+			
+			      gl_Position = projectionMatrix * modelViewMatrix * vec4(newPosition, 1.0);
+			
+			      // vUv = uv;
+			      // vPosition = newPosition;
+			      maskValue = sampler.g;
+			    }
+			  `,
+			  fragmentShader: `
+			    uniform float time;
+			    uniform sampler2D cameraTexture;
+			
+			    // varying vec2 vUv;
+			    // varying vec3 vPosition;
+			    varying float maskValue;
+			
+			    void main () {
+			      gl_FragColor = vec4(1.0, 1.0, 1.0, 0.5 - maskValue);
+			    }
+			  `,
+			  transparent: true
+			})
+			
+			const plane = new THREE.LineSegments(geometry, material)
+			scene.add(plane)
+			
+			let elapsedTime = 0
+			
+			renderer.setSize(w, h)
+			renderer.setClearColor(0x111111)
+			renderer.setPixelRatio(window.devicePixelRatio || 1)
+			document.body.appendChild(renderer.domElement)
+			
+			camera.position.set(0, 0, 100)
+			camera.lookAt(new THREE.Vector3())
+			
+			let helper = new THREE.GridHelper(200, 20)
+			
+			renderFrame()
+			
+			function renderFrame () {
+			  window.requestAnimationFrame(renderFrame)
+			  renderer.render(scene, camera)
+			
+			  elapsedTime += clock.getDelta()
+			
+			  cameraTexture.updateFrame()
+			  plane.material.uniforms.time.value = elapsedTime
+			  cameraTexture.texture.needsUpdate = true
+			}
+		</script>
+	</body>
+</html>

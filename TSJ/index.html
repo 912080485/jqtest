@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		body{background-color: #252525}
+	*{
+		margin:0;
+		padding:0;
+		-webkit-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		-o-user-select: none;
+		user-select: none;
+	}
+	ul,li{
+		list-style: none;
+	}
+	.wrap{
+		width:800px;
+		height:600px;
+		margin:0 auto;
+		position: relative;
+	}
+	img{
+		width:800px;
+		height:600px;
+	}
+		.blur{
+			-webkit-filter: blur(20px);
+			-o-filter: blur(20px);
+			filter: blur(20px);
+		}
+		.img{
+			position: absolute;
+			top:0;
+			
+		}
+		.box{ width: 300px; height: 300px; position: absolute; overflow: hidden; top: 0; left: 0; display: none; border-radius: 300px; 		}
+	</style>
+</head>
+<body>
+	<div class="wrap">
+
+		<img src="img/ac39516c55fbb2fb8f636d26454a20a44723dc97.jpg" alt="" class="blur">
+
+		<div class="box">
+
+			<img src="img/ac39516c55fbb2fb8f636d26454a20a44723dc97.jpg" alt="" class="img">
+
+		</div>
+
+	</div>
+
+	<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+	<script>
+	(function($){
+		$.fn.chajian=function(options){
+			var defaults={
+				key_val:[38,40],
+				type:'keydown',
+				types:'mousemove',
+				targets:'.wrap',
+				shape:'square'		//或者'circular'
+			}
+			var set=$.extend({},defaults,options)
+			if(set.shape=='circular'){
+				$(set.targets).children('div').css('border-radius','50%')
+			}
+			$(set.targets).on(set.types,function(e){
+				var x=e.pageX-$(this).offset().left-$(this).children('div').width()/2
+				var y=e.pageY-$(this).offset().top-$(this).children('div').height()/2
+				if(x<0)x=0;
+				if(y<0)y=0;
+				if(x>$(this).width()-$(this).children('div').width())x=$(this).width()-$(this).children('div').width()
+				if(y>$(this).height()-$(this).children('div').height())y=$(this).height()-$(this).children('div').height()
+				$(this).children('div').css({top:y,left:x,cursor:'none'}).show()
+				$(this).find('div img').css({top:-y,left:-x})
+				var that=$(this);
+				var sum=$(this).children('div').width();
+				$(document).on(set.type,function(e){
+					if(e.keyCode==set.key_val[0]){
+						sum++;
+						that.children('div').width(sum);
+						that.children('div').height(sum);
+					}
+					if(e.keyCode==set.key_val[1]){
+						sum--;
+						that.children('div').width(sum);
+						that.children('div').height(sum);
+					}
+				})
+			}).trigger(set.types)
+		}
+		$('body').chajian({
+
+		})
+	}($))
+	</script>
+</body>
+</html>

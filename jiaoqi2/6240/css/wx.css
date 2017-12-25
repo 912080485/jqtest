@@ -1,0 +1,25 @@
+
+#flow_wx {
+	font-size: 0.8em;
+}
+#flow_wx #wx_icon {
+	background:url(https://img.alicdn.com/imgextra/i4/2145885388/TB2tckmXqm5V1Bjy1zbXXXsBFXa_!!2145885388.png) no-repeat 0px 0px / 18em; top: 40%; width: 5em; height: 5em; right: 0.5em; position: fixed;
+}
+#flow_wx #wx_copy {
+	background:url(https://img.alicdn.com/imgextra/i4/2145885388/TB2tckmXqm5V1Bjy1zbXXXsBFXa_!!2145885388.png) no-repeat 0px -5.8em / 22em; padding: 3em 0px 0px; left: 50%; top: 50%; width: 18em; height: 12em; text-align: center; overflow: hidden; margin-top: -5em; margin-left: -9em; display: none; position: fixed; box-sizing: border-box;
+}
+#flow_wx #wx_copy span {
+	background: rgb(8, 97, 22); padding: 0px 0.2em 0.1em; color: rgb(255, 255, 255); font-size: 2em;
+}
+#flow_wx #wx_copy em {
+	margin: 0.8em 0px; color: rgb(102, 102, 102); line-height: 1em; font-size: 1em; display: inline-block;
+}
+#flow_wx #wx_copy i {
+	background:url(https://img.alicdn.com/imgextra/i4/2145885388/TB2tckmXqm5V1Bjy1zbXXXsBFXa_!!2145885388.png) no-repeat -9.2em 0px / 22em; width: 1.5em; height: 1.5em; vertical-align: middle; display: inline-block;
+}
+#flow_wx #wx_copy b {
+	color: rgb(157, 157, 157); font-size: 0.8em; margin-left: 0.5em;
+}
+#flow_wx #wx_copy p {
+	top: 1em; width: 2em; height: 2em; right: 1.5em; position: absolute;
+}

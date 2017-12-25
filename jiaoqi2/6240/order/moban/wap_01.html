@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0"/>
+<meta http-equiv="Cache-Control" content="no-cache"/>
+<title>订单系统精简版 - （WAP版）样式01</title>
+<script type="text/javascript" src="js/wapdq.js" charset="gb2312"></script>
+<link href="style/wap.css" rel="stylesheet" type="text/css" />
+<style>
+#wforder{width:100%;background:#EBFFEF;}
+.wftitle,.wfsubbox input{background:#0C6;}
+</style>
+</head>
+<body>
+<div id="wforder">
+    <div class="wfwarp">
+        <form id="wfform" name="wfform" action="../order.asp" method="post" onSubmit="return postcheck()" target="_blank">
+<script src="../images/notorder.js"></script>
+        <input type="hidden" id="wfddll" name="wfddll" value="">
+        <input type="hidden" name="wfmun" value="1">
+        <input type="hidden" name="wfprice" value="0">
+        <div class="wftitle">在线快速订购</div>    
+        <div class="wfbdbox">
+            <label class="wfbdxx"><em>*</em>选择产品</label>
+            <div class="wfdxbox red">
+                <input type="radio" name="wfproduct" id="a1" value="佳和足舒美 69元" alt="385" onClick="pricea()" checked><label for="a1">佳和足舒美 69元</label><br>
+           
+            </div>
+        </div>
+        <div class="wfbdbox">
+            <label class="wfbdxx"><em>*</em>您的姓名</label>
+            <div class="wftextbox">
+                <input type="text" name="wfname">
+            </div>
+        </div>
+        <div class="wfbdbox">
+            <label class="wfbdxx"><em>*</em>手机号码</label>
+            <div class="wftextbox">
+                <input type="text" name="wfmob">
+            </div>
+        </div>
+        <div class="wfbdbox">
+            <label class="wfbdxx"><em>*</em>所在地区</label>
+            <div class="wfxlbox">
+                <select name="wfprovince" class="wfdqxl"></select><select name="wfcity" class="wfdqxl"><option value="">选城市</option></select><select name="wfarea" class="wfdqxl"><option value="">选地区</option></select>
+            </div>
+        </div>
+        <div class="wfbdbox">
+            <label class="wfbdxx"><em>*</em>详细地址</label>
+            <div class="wftextbox">
+                <input type="text" name="wfaddress">
+            </div>
+        </div>
+        <div class="wfbdbox">
+            <label class="wfbdxx"><em>*</em>付款方式</label>
+            <div class="wfdxbox">
+                <input type="radio" checked="checked" name="wfpay" id="b1" value="cod" onClick="opay()"><label for="b1"><img src="images/fka.gif"></label>
+            </div>
+        </div>
+        <div class="wfbdbox">
+            <label class="wfbdxx">留言</label>
+            <div class="wftext2box">
+                <textarea name="wfguest"></textarea>
+            </div>
+        </div>
+        <div class="wfsubbox">
+            <input type="submit" name="wfsubmit" value="立即提交订单">
+        </div>
+        </form>
+        <div style="clear:both;"></div>
+    </div>
+</div>
+<div id="wffahuo"></div>
+<script type="text/javascript" src="js/wapfh.js"></script>
+<script type="text/javascript" src="js/wfbd.js"></script>
+</body>
+</html>

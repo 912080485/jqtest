@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=640,user-scalable=no">
+		<meta name="format-detection" content="telephone=no">
+		<style>html,body{margin:0px;height:100%;}</style>
+		<title>我与深圳是什么关系?</title>
+	</head>
+	<body>
+		<div style="overflow: hidden; position: absolute; width: 640px; height: 1138px; background-color: rgb(255, 255, 255); transform-origin: 0px 0px 0px; transform: scale(1);">
+			<div id="video" style="position: absolute; width: 640px; height: 1040px; display: none; transform-origin: 0% 0% 0px; transform: translate3d(0%, 0%, 0px) matrix(1, 0, 0, 1, 0, 0);">
+				<video id="myvideo" playsinline="" x-webkit-airplay="" webkit-playsinline="" src="img/movie.mp4" style="object-fit: fill; position: absolute; height: 100%; width: 100%; left: 0px; top: 0px;"></video>
+			</div>
+			<div id="content" style="position: absolute; width: 1px; height: 1px; background-color: transparent; transform-origin: 0% 0% 0px; transform: translate3d(0%, 0%, 0px) matrix(1, 0, 0, 1, 0, 0);">
+				<img src="img/background.png" style="position: absolute; transform-origin: 0% 0% 0px; transform: translate3d(0%, 0%, 0px) matrix(1, 0, 0, 1, 0, 0);">
+				<div id="yes" style="position: absolute; width: 147px; height: 85px; background-color: transparent; cursor: pointer; transform-origin: 0% 0% 0px; transform: translate3d(0%, 0%, 0px) matrix(1, 0, 0, 1, 331, 530);"></div>
+				<div id='no' style="position: absolute; width: 147px; height: 85px; background-color: transparent; cursor: pointer; transform-origin: 0% 0% 0px; transform: translate3d(0%, 0%, 0px) matrix(1, 0, 0, 1, 160, 532);"></div>
+				<img id='box' src="img/box.png" style="position: absolute; visibility: hidden; transform-origin: 50% 50% 0px; transform: translate3d(-50%, -50%, 0px) matrix(1, 0, 0, 1, 320, 504.5);">
+			</div>
+				<img id="end" src="img/end.png" style="position: absolute; visibility: hidden; transform-origin: 0% 0% 0px; transform: translate3d(0%, 0%, 0px) matrix(1, 0, 0, 1, 0, 0);"></div>
+	
+				<script>
+					var content = document.getElementById("content");
+					var no = document.getElementById("no");
+					var yes = document.getElementById("yes");
+					var box = document.getElementById("box");
+					var video = document.getElementById("video");
+					var myvideo = document.getElementById("myvideo");
+					var end = document.getElementById("end");
+					no.onclick = function(){
+						box.style.visibility = 'visible';
+						setTimeout(function(){
+							box.style.visibility = 'hidden';
+						},2000);
+					};
+					yes.onclick = function(){
+						content.style.display = "none";
+						video.style.display = 'block';
+						myvideo.play();
+					}
+					myvideo.onended = function() {
+						video.style.display = 'none';
+					    end.style.visibility = 'visible';
+					};
+				</script>
+				
+	</body>
+
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div style="width: 100%;height: 70px;background: #000000;">
+			<div style="width: 100%;height: 70px;position: relative;">
+				<div style="width: 20px;height: 20px;position: absolute;top: 5px;right: 5px;background: #005BB8;" onclick="javascript:this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode);"></div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			//从1到n（假设n=10000），从中任意删除了3个数，顺序也被打乱，剩余数字放在一个n-3的数组里，请找出丢失的数字
+			//定义数组
+			var oldArr =[],newArr=[];
+			//插入10000条记录
+			for (var i=0; i<=10000;i++) {
+				oldArr.push(i);
+			}
+			
+			//网上找的根据值来移除数组元素
+			function removeByValue(arr, val) {
+			  for(var i=0; i<arr.length; i++) {
+			    if(arr[i] == val) {
+			      arr.splice(i, 1);
+			      break;
+			    }
+			  }
+			}
+			//生成三个随机数，没有做重复排查
+			for (var i=0;i<3;i++) {
+				var ranNum = parseInt((Math.random()*10000));
+				console.log(ranNum)
+				removeByValue(oldArr,ranNum);
+			}
+			
+			//也是网上找的打乱数组的方法
+			oldArr.sort(function(){ return 0.5 - Math.random() })
+			
+			//这一步就是定义一个新数组，然后把旧数组打乱的元素估计值放到新数组对应的位置，如果没有就为空。然后遍历一遍新数组，把没有的输出出来
+			for (var i=0;i<=oldArr.length;i++) {
+				newArr[oldArr[i]] =oldArr[i]
+			}
+			for (var i=1;i<newArr.length;i++) {
+				if (!newArr[i]) {
+					console.log(i)
+				}
+			}
+			
+			
+			
+			
+			
+		</script>
+	</body>
+</html>
